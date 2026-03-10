@@ -1,50 +1,82 @@
-# Welcome to your Expo app 👋
+## ⏰ Absolutely Necessary Clock App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Because obviously the one thing missing from your life was a dramatic, glowing, multi-person clock-in tracker.
 
-## Get started
+This app exists to answer the timeless question:
 
-1. Install dependencies
+> "Did we actually clock in… or did we just talk about clocking in?"
 
-   ```bash
-   npm install
-   ```
+### What this thing does
 
-2. Start the app
+- Tracks daily clock-ins for three very real, very busy humans:
+  - Murph
+  - Desmond
+  - Eric
+- Auto–clock-ins when you open the secret Clock In page (so you don’t forget).
+- Lets you **override** today’s clock-in time… but only if you tap Clock In 5 times like you really, truly mean it.
+- Calculates when you’ve hit:
+  - Half day (4.5 hours, but never before 1:00 PM)
+  - Full day (9.5 hours, but never before 6:00 PM)
+- Supports different time formats and time zones, because time is fake but payroll is not.
+- Has unnecessarily cool animated glow presets, because vibes are billable.
 
-   ```bash
-   npx expo start
-   ```
+### Pages
 
-In the output, you'll find options to open the app in a
+- **Home** – Big cozy clock, current date, glowing nonsense. The normal, respectable part of the app.
+- **About** – Why this exists, probably some questionable life choices.
+- **Settings** – Time format, timezone, glow preset. Everything you need to make the clock feel important.
+- **Clock In (secret page)** –
+  - Hidden behind a special Home button sequence.
+  - Shows today’s clock-in, expected half day, expected full day.
+  - One tab per person so nobody “accidentally” steals someone else’s shift.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Secret entrance 🔐
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+To open the **Clock In** page:
 
-## Get a fresh project
+1. Tap **Home** three times (quickly) from anywhere.
+2. Boom: Clock In panel appears.
+3. Panic slightly at how late it is.
 
-When you're ready, run:
+To leave Clock In and go back home:
+
+- Tap **Home** once while already on Clock In.
+
+### Safety against mispress chaos
+
+- When you open Clock In, **no person is selected** by default.
+- Nothing is auto-clocked-in until you explicitly tap a person.
+- If you mash Clock In too enthusiastically:
+  - You’ll first get a red “are you sure you want to override?” warning.
+  - Only after 5 quick taps do you get access to the custom time picker.
+
+### Tech-y bits (for future you)
+
+- Built with **Expo** + **React Native**.
+- Uses **expo-router** for navigation.
+- Animation magic by `react-native-animated-glow` (plus a little patch in `patches/`).
+- Stores clock-in data locally using AsyncStorage.
+
+### Running the app
+
+Install stuff:
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Start the dev server:
 
-## Learn more
+```bash
+npx expo start
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+Then open it in your emulator, simulator, or on-device via Expo Go. Stare at the clock. Question your life choices. Clock in anyway.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Why “Absolutely Necessary”?
 
-## Join the community
+Because if anyone ever questions why you spent this much effort on a clock, you can look them straight in the eye and say:
 
-Join our community of developers creating universal apps.
+> "It’s an **absolutely necessary** operational tool. Also it glows."
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Which is, frankly, undeniable.

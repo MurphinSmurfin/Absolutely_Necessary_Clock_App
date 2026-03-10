@@ -1,0 +1,21 @@
+diff --git a/node_modules/react-native-animated-glow/package.json b/node_modules/react-native-animated-glow/package.json
+index a3ea6f5..9014786 100644
+--- a/node_modules/react-native-animated-glow/package.json
++++ b/node_modules/react-native-animated-glow/package.json
+@@ -16,11 +16,15 @@
+   "exports": {
+     ".": {
+       "types": "./lib/typescript/index.d.ts",
++      "react-native": "./lib/module/index.js",
++      "default": "./lib/module/index.js",
+       "module": "./lib/module/index.js",
+       "require": "./lib/commonjs/index.js"
+     },
+     "./presets": {
+       "types": "./lib/typescript/glow-presets.d.ts",
++      "react-native": "./lib/module/glow-presets.js",
++      "default": "./lib/module/glow-presets.js",
+       "module": "./lib/module/glow-presets.js",
+       "require": "./lib/commonjs/glow-presets.js"
+     }
+  
