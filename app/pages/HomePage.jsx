@@ -187,7 +187,7 @@ function AnalogClock({ date, size, styles, syncNonce }) {
         inputRange: [0, 360],
         outputRange: ["0deg", "360deg"],
       }),
-    [secondAngle],
+    [secondAngle]
   );
   return (
     <View style={[styles.clockFace, { width: size, height: size }]}>
@@ -372,10 +372,19 @@ export default function HomePage({ glowPresetKey, styles, timeFormat = "24", tim
       }
     });
 
+    // Force refresh animation every 5 minutes to prevent drift
+    const syncInterval = setInterval(() => {
+      if (mounted && isActiveRef.current) {
+        setAnalogSyncNonce((v) => v + 1);
+        console.log(`🔄 Forced sync to prevent drift ${new Date().toISOString()}`);
+      }
+    }, 300_000);
+
     return () => {
       mounted = false;
       clearTick();
       sub.remove();
+      clearInterval(syncInterval);
     };
   }, []);
 
