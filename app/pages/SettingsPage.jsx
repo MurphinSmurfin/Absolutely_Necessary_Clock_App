@@ -1,7 +1,8 @@
 import Constants from "expo-constants";
-import { useMemo, useState } from "react";
-import { FlatList, Modal, Pressable, Switch, Text, useWindowDimensions, View } from "react-native";
+import { useMemo, useRef, useState } from "react";
+import { Alert, FlatList, Modal, Platform, Pressable, Switch, Text, ToastAndroid, useWindowDimensions, View } from "react-native";
 import AnimatedGlow from "react-native-animated-glow";
+import { HCESession, NFCTagType4, NFCTagType4NDEFContentType } from "react-native-hce";
 import { GLOW_PRESETS } from "../constants/GLOW_PRESETS";
 import { DEFAULT_TIMEZONE_KEY, TIMEZONE_OPTIONS } from "../constants/TIMEZONES";
 
@@ -38,6 +39,39 @@ export default function SettingsPage({
   const effectiveTimezoneKey = timezoneKey || DEFAULT_TIMEZONE_KEY;
   const [timezoneModalVisible, setTimezoneModalVisible] = useState(false);
   const [glowModalVisible, setGlowModalVisible] = useState(false);
+  const [hceEnabled, setHceEnabled] = useState(false);
+  const sessionRef = useRef(null);
+  const hceListenerRef = useRef(null);
+  const hceReadHandledRef = useRef(false);
+
+  const stopHceSession = async () => {
+    const session = sessionRef.current;
+    const removeListener = hceListenerRef.current;
+
+    if (removeListener) {
+      removeListener();
+      hceListenerRef.current = null;
+    }
+
+    if (session) {
+      await session.setEnabled(false);
+      sessionRef.current = null;
+    }
+    setHceEnabled(false);
+  };
+
+  const showMessage = (title, message) => {
+    if (Platform.OS === "android") {
+      try {
+        ToastAndroid.show(message ?? title, ToastAndroid.SHORT);
+      } catch (_e) {
+        // fallback
+        Alert.alert(title, message);
+      }
+    } else {
+      Alert.alert(title, message);
+    }
+  };
 
   const currentTimezoneLabel = useMemo(() => {
     const match = TIMEZONE_OPTIONS.find((opt) => opt.key === effectiveTimezoneKey);
@@ -79,6 +113,77 @@ export default function SettingsPage({
               style={{ transform: [{ scale: 0.8 }] }}
             />
           </View>
+        </View>
+
+        <View style={{ marginTop: 12 }}>
+          <Pressable
+            onPress={async () => {
+              try {
+                if (Platform.OS !== "android") {
+                  showMessage("HCE", "HCE emulation is only supported on Android devices.");
+                  return;
+                }
+                const tag = new NFCTagType4({
+                  type: NFCTagType4NDEFContentType.URL,
+                  content: "https://instagram.com/bitsofmurph",
+                  writable: false,
+                });
+                const session = await HCESession.getInstance();
+                session.setApplication(tag);
+                await session.setEnabled(true);
+                hceReadHandledRef.current = false;
+                if (hceListenerRef.current) {
+                  hceListenerRef.current();
+                }
+                hceListenerRef.current = session.on(HCESession.Events.HCE_STATE_READ, () => {
+                  if (hceReadHandledRef.current) {
+                    return;
+                  }
+                  hceReadHandledRef.current = true;
+
+                  const removeListener = hceListenerRef.current;
+                  if (removeListener) {
+                    removeListener();
+                    hceListenerRef.current = null;
+                  }
+
+                  showMessage("HCE", "The tag has been read! Thank You.");
+                  void stopHceSession();
+                });
+                sessionRef.current = session;
+                setHceEnabled(true);
+                showMessage("HCE", "NFC emulation started (tap an NFC reader to read the URL)");
+              } catch (err) {
+                console.error(err);
+                showMessage("HCE error", String(err));
+              }
+            }}
+            style={({ pressed }) => [styles.settingRow, styles.settingRowFirst, pressed && styles.settingRowPressed]}
+          >
+            <Text style={styles.settingText}>Start NFC emulation (open Instagram URL)</Text>
+            <Text style={[styles.settingText, { color: "#8C8C8C" }]}>{hceEnabled ? "Running" : "Stopped"}</Text>
+          </Pressable>
+
+          <Pressable
+            onPress={async () => {
+              try {
+                const session = sessionRef.current;
+                if (!session) {
+                  showMessage("HCE", "No active HCE session");
+                  return;
+                }
+                await stopHceSession();
+                showMessage("HCE", "NFC emulation stopped");
+              } catch (err) {
+                console.error(err);
+                showMessage("HCE error", String(err));
+              }
+            }}
+            style={({ pressed }) => [styles.settingRow, pressed && styles.settingRowPressed, { marginTop: 8 }]}
+          >
+            <Text style={styles.settingText}>Stop NFC emulation</Text>
+            <View style={{ width: 8 }} />
+          </Pressable>
         </View>
 
         <Text style={styles.pageBodyMuted}>Timezone</Text>
