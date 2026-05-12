@@ -1,7 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Animated, AppState, Easing, Pressable, Text, useWindowDimensions, View } from "react-native";
-import AnimatedGlow from "react-native-animated-glow";
+// Animated glow removed to avoid runtime crashes
+import SkiaGlow from "../components/SkiaGlow";
 import { GLOW_PRESETS } from "../constants/GLOW_PRESETS";
 import { DEFAULT_TIMEZONE_KEY, TIMEZONE_MAP } from "../constants/TIMEZONES";
 
@@ -436,7 +437,7 @@ export default function HomePage({ glowPresetKey, styles, timeFormat = "24", tim
   const activePreset = GLOW_PRESETS[glowPresetKey] ?? GLOW_PRESETS.off;
 
   return (
-    <AnimatedGlow preset={activePreset}>
+    <SkiaGlow preset={activePreset} style={{ width: layout.containerWidth, height: layout.containerHeight }}>
       <Pressable
         onPress={toggle}
         style={({ pressed }) => [
@@ -466,6 +467,6 @@ export default function HomePage({ glowPresetKey, styles, timeFormat = "24", tim
           </View>
         </View>
       </Pressable>
-    </AnimatedGlow>
+    </SkiaGlow>
   );
 }

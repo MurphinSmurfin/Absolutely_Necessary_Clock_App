@@ -1,7 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Pressable, Text, useWindowDimensions, View } from "react-native";
-import AnimatedGlow from "react-native-animated-glow";
+// Animated glow removed to avoid runtime crashes
+import SkiaGlow from "../components/SkiaGlow";
 import { GLOW_PRESETS } from "../constants/GLOW_PRESETS";
 import { DEFAULT_TIMEZONE_KEY, TIMEZONE_MAP } from "../constants/TIMEZONES";
 
@@ -343,7 +344,7 @@ export default function ClockInPage({ glowPresetKey, styles, timeFormat = "24", 
   }, [record]);
 
   return (
-    <AnimatedGlow preset={activePreset} activeState="default">
+    <SkiaGlow preset={activePreset} style={{ width: layout.containerWidth, height: layout.containerHeight }}>
       <View
         style={[
           styles.pageCard,
@@ -534,6 +535,6 @@ export default function ClockInPage({ glowPresetKey, styles, timeFormat = "24", 
           </View>
         )}
       </View>
-    </AnimatedGlow>
+    </SkiaGlow>
   );
 }

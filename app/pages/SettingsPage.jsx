@@ -1,8 +1,8 @@
 import Constants from "expo-constants";
 import { useMemo, useRef, useState } from "react";
 import { Alert, FlatList, Modal, Platform, Pressable, Switch, Text, ToastAndroid, useWindowDimensions, View } from "react-native";
-import AnimatedGlow from "react-native-animated-glow";
-import { HCESession, NFCTagType4, NFCTagType4NDEFContentType } from "react-native-hce";
+// Animated glow removed to avoid runtime crashes
+import SkiaGlow from "../components/SkiaGlow";
 import { GLOW_PRESETS } from "../constants/GLOW_PRESETS";
 import { DEFAULT_TIMEZONE_KEY, TIMEZONE_OPTIONS } from "../constants/TIMEZONES";
 
@@ -84,7 +84,7 @@ export default function SettingsPage({
   }, [glowOptions, glowPresetKey]);
 
   return (
-    <AnimatedGlow preset={activePreset} activeState="default">
+    <SkiaGlow preset={activePreset} style={{ width: layout.containerWidth, height: layout.containerHeight }}>
       <View
         style={[
           styles.pageCard,
@@ -115,76 +115,76 @@ export default function SettingsPage({
           </View>
         </View>
 
-        <View style={{ marginTop: 12 }}>
-          <Pressable
-            onPress={async () => {
-              try {
-                if (Platform.OS !== "android") {
-                  showMessage("HCE", "HCE emulation is only supported on Android devices.");
+        {/* <View style={{ marginTop: 12 }}>
+        <Pressable
+          onPress={async () => {
+            try {
+              if (Platform.OS !== "android") {
+                showMessage("HCE", "HCE emulation is only supported on Android devices.");
+                return;
+              }
+              const tag = new NFCTagType4({
+                type: NFCTagType4NDEFContentType.URL,
+                content: "https://instagram.com/bitsofmurph",
+                writable: false,
+              });
+              const session = await HCESession.getInstance();
+              session.setApplication(tag);
+              await session.setEnabled(true);
+              hceReadHandledRef.current = false;
+              if (hceListenerRef.current) {
+                hceListenerRef.current();
+              }
+              hceListenerRef.current = session.on(HCESession.Events.HCE_STATE_READ, () => {
+                if (hceReadHandledRef.current) {
                   return;
                 }
-                const tag = new NFCTagType4({
-                  type: NFCTagType4NDEFContentType.URL,
-                  content: "https://instagram.com/bitsofmurph",
-                  writable: false,
-                });
-                const session = await HCESession.getInstance();
-                session.setApplication(tag);
-                await session.setEnabled(true);
-                hceReadHandledRef.current = false;
-                if (hceListenerRef.current) {
-                  hceListenerRef.current();
+                hceReadHandledRef.current = true;
+
+                const removeListener = hceListenerRef.current;
+                if (removeListener) {
+                  removeListener();
+                  hceListenerRef.current = null;
                 }
-                hceListenerRef.current = session.on(HCESession.Events.HCE_STATE_READ, () => {
-                  if (hceReadHandledRef.current) {
-                    return;
-                  }
-                  hceReadHandledRef.current = true;
 
-                  const removeListener = hceListenerRef.current;
-                  if (removeListener) {
-                    removeListener();
-                    hceListenerRef.current = null;
-                  }
+                showMessage("HCE", "The tag has been read! Thank You.");
+                void stopHceSession();
+              });
+              sessionRef.current = session;
+              setHceEnabled(true);
+              showMessage("HCE", "NFC emulation started (tap an NFC reader to read the URL)");
+            } catch (err) {
+              console.error(err);
+              showMessage("HCE error", String(err));
+            }
+          }}
+          style={({ pressed }) => [styles.settingRow, styles.settingRowFirst, pressed && styles.settingRowPressed]}
+        >
+          <Text style={styles.settingText}>Start NFC emulation (open Instagram URL)</Text>
+          <Text style={[styles.settingText, { color: "#8C8C8C" }]}>{hceEnabled ? "Running" : "Stopped"}</Text>
+        </Pressable>
 
-                  showMessage("HCE", "The tag has been read! Thank You.");
-                  void stopHceSession();
-                });
-                sessionRef.current = session;
-                setHceEnabled(true);
-                showMessage("HCE", "NFC emulation started (tap an NFC reader to read the URL)");
-              } catch (err) {
-                console.error(err);
-                showMessage("HCE error", String(err));
+        <Pressable
+          onPress={async () => {
+            try {
+              const session = sessionRef.current;
+              if (!session) {
+                showMessage("HCE", "No active HCE session");
+                return;
               }
-            }}
-            style={({ pressed }) => [styles.settingRow, styles.settingRowFirst, pressed && styles.settingRowPressed]}
-          >
-            <Text style={styles.settingText}>Start NFC emulation (open Instagram URL)</Text>
-            <Text style={[styles.settingText, { color: "#8C8C8C" }]}>{hceEnabled ? "Running" : "Stopped"}</Text>
-          </Pressable>
-
-          <Pressable
-            onPress={async () => {
-              try {
-                const session = sessionRef.current;
-                if (!session) {
-                  showMessage("HCE", "No active HCE session");
-                  return;
-                }
-                await stopHceSession();
-                showMessage("HCE", "NFC emulation stopped");
-              } catch (err) {
-                console.error(err);
-                showMessage("HCE error", String(err));
-              }
-            }}
-            style={({ pressed }) => [styles.settingRow, pressed && styles.settingRowPressed, { marginTop: 8 }]}
-          >
-            <Text style={styles.settingText}>Stop NFC emulation</Text>
-            <View style={{ width: 8 }} />
-          </Pressable>
-        </View>
+              await stopHceSession();
+              showMessage("HCE", "NFC emulation stopped");
+            } catch (err) {
+              console.error(err);
+              showMessage("HCE error", String(err));
+            }
+          }}
+          style={({ pressed }) => [styles.settingRow, pressed && styles.settingRowPressed, { marginTop: 8 }]}
+        >
+          <Text style={styles.settingText}>Stop NFC emulation</Text>
+          <View style={{ width: 8 }} />
+        </Pressable>
+      </View> */}
 
         <Text style={styles.pageBodyMuted}>Timezone</Text>
 
@@ -363,6 +363,6 @@ export default function SettingsPage({
           v{appVersion}
         </Text>
       </View>
-    </AnimatedGlow>
+    </SkiaGlow>
   );
 }

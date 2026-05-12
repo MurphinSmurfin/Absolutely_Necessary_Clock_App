@@ -2,7 +2,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback, useMemo, useState } from "react";
 import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
-import AnimatedGlow from "react-native-animated-glow";
+// Animated glow removed to avoid runtime crashes
+import SkiaGlow from "../components/SkiaGlow";
 import { BODY_VARIANTS } from "../constants/BODY_VARIANTS";
 import { GLOW_PRESETS } from "../constants/GLOW_PRESETS";
 
@@ -20,11 +21,11 @@ export default function AboutPage({ styles, glowPresetKey }) {
   useFocusEffect(
     useCallback(() => {
       setBody(BODY_VARIANTS[Math.floor(Math.random() * BODY_VARIANTS.length)]);
-    }, []),
+    }, [])
   );
 
   return (
-    <AnimatedGlow preset={activePreset} activeState="default">
+    <SkiaGlow preset={activePreset} style={{ width: layout.containerWidth, height: layout.containerHeight }}>
       <View
         style={[
           styles.pageCard,
@@ -76,7 +77,7 @@ export default function AboutPage({ styles, glowPresetKey }) {
           </View>
         </View>
       </View>
-    </AnimatedGlow>
+    </SkiaGlow>
   );
 }
 
