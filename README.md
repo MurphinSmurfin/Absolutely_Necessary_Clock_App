@@ -66,9 +66,9 @@ Because future you deserves documentation, even if present you deserves conseque
 - Uses **expo-router** for navigation, because files as routes felt just organized enough to be dangerous.
 - Animation magic powered by `react-native-animated-glow`, plus a tiny patch in `patches/`, because nothing says “stable app” like modifying reality slightly.
 - Stores clock-in data locally using AsyncStorage, the digital equivalent of writing payroll secrets on a sticky note and hoping for the best.
-- Uses `react-native-hce` for Android host-card emulation, because this clock app apparently needed NFC cosplay.
-
-## HCE demo
+  ~~- Uses `react-native-hce` for Android host-card emulation, because this clock app apparently needed NFC cosplay.
+  ~~
+  ~~## HCE demo
 
 The Settings page includes an HCE button that starts an Android-only NFC Type 4 tag emulation session.
 
@@ -80,7 +80,7 @@ Is that the entire brand? Obviously.
 - The read callback is guarded so the toast only fires once per session, because nobody came here for NFC spam in three acts.
 - This feature requires the native Android setup from `react-native-hce`:
   - `android/app/src/main/res/xml/aid_list.xml`
-  - Android manifest NFC permissions and HCE service declaration
+  - Android manifest NFC permissions and HCE service declaration~~
 
 In other words: yes, it works, but only after Android makes you earn it emotionally.
 
@@ -100,10 +100,10 @@ npx expo start
 
 Then open it in your emulator, simulator, or on a real device. Stare at the clock. Reflect on your choices. Clock in, because capitalism remains undefeated.
 
-For the HCE demo, use an Android device with NFC support and a build that includes the native `react-native-hce` Android configuration.
+~~For the HCE demo, use an Android device with NFC support and a build that includes the native `react-native-hce` Android configuration.
 
 Expo Go will not magically support your native NFC dreams.  
-Reality has boundaries. Rude, but true.
+Reality has boundaries. Rude, but true.~~
 
 ## Why “Absolutely Necessary”?
 
