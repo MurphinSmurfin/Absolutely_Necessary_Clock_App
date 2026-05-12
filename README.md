@@ -32,13 +32,11 @@ This is a glowing, dramatic, mildly judgmental attendance oracle built to answer
     - Full day: 9.5 hours, but not before 6:00 PM, because apparently suffering has a schedule.
   - Supports different time formats and time zones, because time is a social construct, but payroll will still ask for documentation.
   - Includes unnecessarily gorgeous animated glow presets, because if we must track labor, it should at least look like a cyberpunk lava lamp.
-  - ~~Comes with an Android-only HCE demo that emulates the developer’s Instagram account, `@bitsofmurph`, over NFC. Because of course the clock app needed side quests.~~
 
   ## Pages
   - **Home** – Big cozy clock, current date, dramatic glow, and the comforting illusion that everything is under control.
   - **About** – A tasteful monument to questionable decisions, overengineering, and the human need to justify side projects.
   - **Settings** – Time format, timezone, glow preset, and other buttons you will touch once and then pretend you configured professionally.
-    - ~~Also includes the HCE controls for starting/stopping the NFC emulation demo, because Settings was feeling too emotionally stable.~~
   - **Clock In (secret page)** –
     - Hidden behind a Home button sequence, naturally, because basic navigation was too humble.
     - Shows today’s clock-in, expected half day, and expected full day.
@@ -68,46 +66,10 @@ This is a glowing, dramatic, mildly judgmental attendance oracle built to answer
 
   ## Tech-y bits for future you
 
-<<<<<<< HEAD
-- Built with **Expo** + **React Native**.
-- Uses **expo-router** for navigation, because files as routes felt just organized enough to be dangerous.
-- Animation magic powered by `react-native-animated-glow`, plus a tiny patch in `patches/`, because nothing says “stable app” like modifying reality slightly.
-- Stores clock-in data locally using AsyncStorage, the digital equivalent of writing payroll secrets on a sticky note and hoping for the best.
-  ~~- Uses `react-native-hce` for Android host-card emulation, because this clock app apparently needed NFC cosplay.
-  ~~
-  ~~## HCE demo
-=======
   Because future you deserves documentation, even if present you deserves consequences.
   - Built with **Expo** + **React Native**.
   - Uses **expo-router** for navigation, because files as routes felt just organized enough to be dangerous.
-  - Animation magic powered by `react-native-animated-glow`, plus a tiny patch in `patches/`, because nothing says “stable app” like modifying reality slightly.
   - Stores clock-in data locally using AsyncStorage, the digital equivalent of writing payroll secrets on a sticky note and hoping for the best.
-  - ~~Uses `react-native-hce` for Android host-card emulation, because this clock app apparently needed NFC cosplay.~~
-  - ~~## HCE demo~~
-
-  ~~The Settings page includes an HCE button that starts an Android-only NFC Type 4 tag emulation session.~~
->>>>>>> 09293a3 (feat: update README to reflect changes in clock-in functionality and remove HCE demo references)
-
-  ~~Was this necessary? Absolutely not.~~  
-  ~~Is that the entire brand? Obviously.~~
-
-  ~~- It emulates the developer’s Instagram account: `https://instagram.com/bitsofmurph`, because the natural endpoint of time tracking is self-promotion.~~
-  ~~- When the tag is read, the app shows one toast, shuts the session down, and acts like this was a carefully choreographed exit.~~
-  ~~- The read callback is guarded so the toast only fires once per session, because nobody came here for NFC spam in three acts.~~
-  ~~- This feature requires the native Android setup from `react-native-hce`:~~
-  ~~ - `android/app/src/main/res/xml/aid_list.xml`~~
-  ~~ - Android manifest NFC permissions and HCE service declaration~~
-
-<<<<<<< HEAD
-- It emulates the developer’s Instagram account: `https://instagram.com/bitsofmurph`, because the natural endpoint of time tracking is self-promotion.
-- When the tag is read, the app shows one toast, shuts the session down, and acts like this was a carefully choreographed exit.
-- The read callback is guarded so the toast only fires once per session, because nobody came here for NFC spam in three acts.
-- This feature requires the native Android setup from `react-native-hce`:
-  - `android/app/src/main/res/xml/aid_list.xml`
-  - Android manifest NFC permissions and HCE service declaration~~
-=======
-  ~~In other words: yes, it works, but only after Android makes you earn it emotionally.~~
->>>>>>> 09293a3 (feat: update README to reflect changes in clock-in functionality and remove HCE demo references)
 
   ## Running the app
 
@@ -125,19 +87,7 @@ This is a glowing, dramatic, mildly judgmental attendance oracle built to answer
 
   Then open it in your emulator, simulator, or on a real device. Stare at the clock. Reflect on your choices. Clock in, because capitalism remains undefeated.
 
-  ~~For the HCE demo, use an Android device with NFC support and a build that includes the native `react-native-hce` Android configuration.~~
-
-<<<<<<< HEAD
-~~For the HCE demo, use an Android device with NFC support and a build that includes the native `react-native-hce` Android configuration.
-
-Expo Go will not magically support your native NFC dreams.  
-Reality has boundaries. Rude, but true.~~
-=======
-  ~~Expo Go will not magically support your native NFC dreams.~~  
-  ~~Reality has boundaries. Rude, but true.~~
-
   ## Why “Absolutely Necessary”?
->>>>>>> 09293a3 (feat: update README to reflect changes in clock-in functionality and remove HCE demo references)
 
   Because when someone asks why a simple clock-in app has secret pages, animated glow, override rituals, multiple humans, and timezone handling, you can calmly say:
 
