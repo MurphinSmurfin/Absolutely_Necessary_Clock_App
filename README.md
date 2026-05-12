@@ -10,58 +10,65 @@ This is a glowing, dramatic, mildly judgmental attendance oracle built to answer
 ## What this masterpiece does
 
 - Tracks daily clock-ins for three exceptionally important corporate entities:
-  - Murph
-  - Desmond
-  - Eric
-- Auto-clock-ins when you open the secret Clock In page, because trusting humans was clearly a mistake.
-- Lets you **override** today’s clock-in time, but only after tapping Clock In 3 times like you’re defusing a bomb made of HR paperwork.
-- Calculates when you’ve reached:
-  - Half day: 4.5 hours, but not before 1:00 PM, because lunch exists and so does dignity.
-  - Full day: 9.5 hours, but not before 6:00 PM, because apparently suffering has a schedule.
-- Supports different time formats and time zones, because time is a social construct, but payroll will still ask for documentation.
-- Includes unnecessarily gorgeous animated glow presets, because if we must track labor, it should at least look like a cyberpunk lava lamp.
-- Comes with an Android-only HCE demo that emulates the developer’s Instagram account, `@bitsofmurph`, over NFC. Because of course the clock app needed side quests.
 
-## Pages
+  # ⏰ Absolutely Necessary Clock App
 
-- **Home** – Big cozy clock, current date, dramatic glow, and the comforting illusion that everything is under control.
-- **About** – A tasteful monument to questionable decisions, overengineering, and the human need to justify side projects.
-- **Settings** – Time format, timezone, glow preset, and other buttons you will touch once and then pretend you configured professionally.
-  - Also includes the HCE controls for starting/stopping the NFC emulation demo, because Settings was feeling too emotionally stable.
-- **Clock In (secret page)** –
-  - Hidden behind a Home button sequence, naturally, because basic navigation was too humble.
-  - Shows today’s clock-in, expected half day, and expected full day.
-  - One tab per person, because apparently “I thought I was selected” is now a threat model.
+  Because apparently society collapsed the moment three grown adults could no longer remember whether they clocked in.
 
-## Secret entrance 🔐
+  This is not just a clock.  
+  This is a glowing, dramatic, mildly judgmental attendance oracle built to answer the devastating workplace mystery:
 
-To access the **Clock In** page, perform the ancient ritual:
+  > “Did we clock in… or did we simply manifest productivity vibes?”
 
-1. Tap **Home** three times quickly from anywhere.
-2. Watch the Clock In panel appear like you have unlocked classified payroll technology.
-3. Experience a brief wave of panic as you realize what time it is.
+  ## What this masterpiece does
+  - Tracks daily clock-ins for three exceptionally important corporate entities:
+    - Murph
+    - Desmond
+    - Eric
+  - Auto-clock-ins when you open the secret Clock In page, because trusting humans was clearly a mistake.
+  - Lets you **override** today’s clock-in time, but only after tapping Clock In 3 times like you’re defusing a bomb made of HR paperwork.
+  - Calculates when you’ve reached:
+    - Half day: 4.5 hours, but not before 1:00 PM, because lunch exists and so does dignity.
+    - Full day: 9.5 hours, but not before 6:00 PM, because apparently suffering has a schedule.
+  - Supports different time formats and time zones, because time is a social construct, but payroll will still ask for documentation.
+  - Includes unnecessarily gorgeous animated glow presets, because if we must track labor, it should at least look like a cyberpunk lava lamp.
+  - ~~Comes with an Android-only HCE demo that emulates the developer’s Instagram account, `@bitsofmurph`, over NFC. Because of course the clock app needed side quests.~~
 
-To escape Clock In and return to civilization:
+  ## Pages
+  - **Home** – Big cozy clock, current date, dramatic glow, and the comforting illusion that everything is under control.
+  - **About** – A tasteful monument to questionable decisions, overengineering, and the human need to justify side projects.
+  - **Settings** – Time format, timezone, glow preset, and other buttons you will touch once and then pretend you configured professionally.
+    - ~~Also includes the HCE controls for starting/stopping the NFC emulation demo, because Settings was feeling too emotionally stable.~~
+  - **Clock In (secret page)** –
+    - Hidden behind a Home button sequence, naturally, because basic navigation was too humble.
+    - Shows today’s clock-in, expected half day, and expected full day.
+    - One tab per person, because apparently “I thought I was selected” is now a threat model.
 
-- Tap **Home** once while already on Clock In.
+  ## Secret entrance 🔐
 
-Congratulations. You have defeated navigation.
+  To access the **Clock In** page, perform the ancient ritual:
+  1. Tap **Home** three times quickly from anywhere.
+  2. Watch the Clock In panel appear like you have unlocked classified payroll technology.
+  3. Experience a brief wave of panic as you realize what time it is.
 
-## Safety against mispress chaos
+  To escape Clock In and return to civilization:
+  - Tap **Home** once while already on Clock In.
 
-Because apparently buttons invite chaos.
+  Congratulations. You have defeated navigation.
 
-- When you open Clock In, **no person is selected** by default.
-- Nothing gets auto-clocked-in until you explicitly choose a person, because consent matters, even in attendance software.
-- If you aggressively mash Clock In like it owes you money:
-  - First, you get a red “are you sure?” warning.
-  - Then, only after 5 quick taps, you unlock the custom time picker.
-  - At which point the app quietly judges you but allows it.
+  ## Safety against mispress chaos
 
-## Tech-y bits for future you
+  Because apparently buttons invite chaos.
+  - When you open Clock In, **no person is selected** by default.
+  - Nothing gets auto-clocked-in until you explicitly choose a person, because consent matters, even in attendance software.
+  - If you aggressively mash Clock In like it owes you money:
+    - First, you get a red “are you sure?” warning.
+    - Then, only after 5 quick taps, you unlock the custom time picker.
+    - At which point the app quietly judges you but allows it.
 
-Because future you deserves documentation, even if present you deserves consequences.
+  ## Tech-y bits for future you
 
+<<<<<<< HEAD
 - Built with **Expo** + **React Native**.
 - Uses **expo-router** for navigation, because files as routes felt just organized enough to be dangerous.
 - Animation magic powered by `react-native-animated-glow`, plus a tiny patch in `patches/`, because nothing says “stable app” like modifying reality slightly.
@@ -69,48 +76,73 @@ Because future you deserves documentation, even if present you deserves conseque
   ~~- Uses `react-native-hce` for Android host-card emulation, because this clock app apparently needed NFC cosplay.
   ~~
   ~~## HCE demo
+=======
+  Because future you deserves documentation, even if present you deserves consequences.
+  - Built with **Expo** + **React Native**.
+  - Uses **expo-router** for navigation, because files as routes felt just organized enough to be dangerous.
+  - Animation magic powered by `react-native-animated-glow`, plus a tiny patch in `patches/`, because nothing says “stable app” like modifying reality slightly.
+  - Stores clock-in data locally using AsyncStorage, the digital equivalent of writing payroll secrets on a sticky note and hoping for the best.
+  - ~~Uses `react-native-hce` for Android host-card emulation, because this clock app apparently needed NFC cosplay.~~
+  - ~~## HCE demo~~
 
-The Settings page includes an HCE button that starts an Android-only NFC Type 4 tag emulation session.
+  ~~The Settings page includes an HCE button that starts an Android-only NFC Type 4 tag emulation session.~~
+>>>>>>> 09293a3 (feat: update README to reflect changes in clock-in functionality and remove HCE demo references)
 
-Was this necessary? Absolutely not.  
-Is that the entire brand? Obviously.
+  ~~Was this necessary? Absolutely not.~~  
+  ~~Is that the entire brand? Obviously.~~
 
+  ~~- It emulates the developer’s Instagram account: `https://instagram.com/bitsofmurph`, because the natural endpoint of time tracking is self-promotion.~~
+  ~~- When the tag is read, the app shows one toast, shuts the session down, and acts like this was a carefully choreographed exit.~~
+  ~~- The read callback is guarded so the toast only fires once per session, because nobody came here for NFC spam in three acts.~~
+  ~~- This feature requires the native Android setup from `react-native-hce`:~~
+  ~~ - `android/app/src/main/res/xml/aid_list.xml`~~
+  ~~ - Android manifest NFC permissions and HCE service declaration~~
+
+<<<<<<< HEAD
 - It emulates the developer’s Instagram account: `https://instagram.com/bitsofmurph`, because the natural endpoint of time tracking is self-promotion.
 - When the tag is read, the app shows one toast, shuts the session down, and acts like this was a carefully choreographed exit.
 - The read callback is guarded so the toast only fires once per session, because nobody came here for NFC spam in three acts.
 - This feature requires the native Android setup from `react-native-hce`:
   - `android/app/src/main/res/xml/aid_list.xml`
   - Android manifest NFC permissions and HCE service declaration~~
+=======
+  ~~In other words: yes, it works, but only after Android makes you earn it emotionally.~~
+>>>>>>> 09293a3 (feat: update README to reflect changes in clock-in functionality and remove HCE demo references)
 
-In other words: yes, it works, but only after Android makes you earn it emotionally.
+  ## Running the app
 
-## Running the app
+  Install the dependencies, because the JavaScript ecosystem requires tribute:
 
-Install the dependencies, because the JavaScript ecosystem requires tribute:
+  ```bash
+  npm install
+  ```
 
-```bash
-npm install
-```
+  Start the dev server:
 
-Start the dev server:
+  ```bash
+  npx expo start
+  ```
 
-```bash
-npx expo start
-```
+  Then open it in your emulator, simulator, or on a real device. Stare at the clock. Reflect on your choices. Clock in, because capitalism remains undefeated.
 
-Then open it in your emulator, simulator, or on a real device. Stare at the clock. Reflect on your choices. Clock in, because capitalism remains undefeated.
+  ~~For the HCE demo, use an Android device with NFC support and a build that includes the native `react-native-hce` Android configuration.~~
 
+<<<<<<< HEAD
 ~~For the HCE demo, use an Android device with NFC support and a build that includes the native `react-native-hce` Android configuration.
 
 Expo Go will not magically support your native NFC dreams.  
 Reality has boundaries. Rude, but true.~~
+=======
+  ~~Expo Go will not magically support your native NFC dreams.~~  
+  ~~Reality has boundaries. Rude, but true.~~
 
-## Why “Absolutely Necessary”?
+  ## Why “Absolutely Necessary”?
+>>>>>>> 09293a3 (feat: update README to reflect changes in clock-in functionality and remove HCE demo references)
 
-Because when someone asks why a simple clock-in app has secret pages, animated glow, override rituals, multiple humans, timezone handling, and NFC Instagram emulation, you can calmly say:
+  Because when someone asks why a simple clock-in app has secret pages, animated glow, override rituals, multiple humans, and timezone handling, you can calmly say:
 
-> “It’s an **absolutely necessary** operational tool. Also it glows.”
+  > “It’s an **absolutely necessary** operational tool. Also it glows.”
 
-And honestly?
+  And honestly?
 
-Case closed.
+  Case closed.
